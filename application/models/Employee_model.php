@@ -27,4 +27,26 @@ class Employee_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	public function edit_employee($id)
+    {
+        $this->db->where('id',$id);
+        $query = $this->db->get('employees');
+        return $query->row();
+    }
+
+	public function update_employee($id, $data)
+	{
+		// $this->db->where('id', $id);
+		// $this->db->update('employees', $data);
+		// return $this->db->affected_rows();
+
+		$this->db->where('id', $id);
+        return $this->db->update('employees', $data);
+	}
+
+	public function delete_employee($id)
+	{
+		return $this->db->delete('employees', ['id' => $id]);
+	}
 }
